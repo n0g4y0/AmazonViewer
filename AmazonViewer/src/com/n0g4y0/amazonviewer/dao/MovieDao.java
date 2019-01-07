@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.anncode.amazonviewer.model.Movie;
+import com.mysql.jdbc.Statement;
 import com.mysql.jdbc.util.ResultSetUtil;
 import com.n0g4y0.amazonviewer.db.IDBConnection;
 
@@ -14,7 +15,38 @@ import static com.n0g4y0.amazonviewer.db.DataBase.*;
 
 public interface MovieDao extends IDBConnection {
 	
+	// mediante este metodo, agregaremos informacion a la BD, mediante el INSERT de SQL.
+	/*
+	 * Este metodo,tambien aplicaria cuando queremos actualizar la BD.
+	 * 
+	 * */
+	
 	default Movie setMovieViewed(Movie movie) {
+		
+		try(Connection connection = connectToDB()) {
+			
+			java.sql.Statement statement = connection.createStatement();
+			String query = "INSERT INTO " + TVIEWED+
+							" ("+TVIEWED_IDMATERIAL+", "+TVIEWED_IDELEMENT+", "+TVIEWED_IDUSUARIO+")" +
+							" VALUES("+ID_MATERIALS[0]+", "+movie.getId()+", "+TUSER_IDUSUARIO+")";
+			
+			// se pone mayor a cero, para comprobar si se afecto tuplas de datos.
+			
+			if (statement.executeUpdate(query) > 0) {
+				
+				System.out.println("Se marco en Visto..)");	
+				
+			}
+			
+			
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		
 		return movie;
 	}
 	

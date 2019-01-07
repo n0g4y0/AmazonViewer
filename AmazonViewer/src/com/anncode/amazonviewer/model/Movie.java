@@ -98,7 +98,16 @@ public class Movie extends Film implements IVisualizable ,MovieDao{
 	public void view() {
 		
 		setViewed(true);
+		
+		// aqui se agregan algunas instrucciones, para llamar a nuestro objeto e insertar datos en la BD.
+		Movie movie = new Movie();
+		// se agrega todo el objeto actual de la clase.
+		movie.setMovieViewed(this);
+		
+		
 		Date dateI = startToSee(new Date());
+		
+		
 		
 		for (int i = 0; i < 100000; i++) {
 			System.out.println("..........");
