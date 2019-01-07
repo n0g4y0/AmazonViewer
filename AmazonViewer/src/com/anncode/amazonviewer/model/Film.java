@@ -1,6 +1,22 @@
 package com.anncode.amazonviewer.model;
 
-public class Film {
+//import org.graalvm.compiler.core.common.type.ArithmeticOpTable.UnaryOp.Abs;
+
+/**
+ * <h1>Film</h1>
+ * Film es una clase padre Abstracta
+ * <p>
+ * Esta clase, es la clase base de la familia Films, como es abstracta,
+ * no pueden crearse instancias. Contiene el metodo Abstracto 
+ * {@code view()} que es obligatorio implementar para todo aquel que pertenezca a la familia.
+ * 
+ * @author n0g4y0
+ * @version 1.1
+ * @since 2018
+ * 
+ * */
+
+public abstract class Film {
 	
 	private String title;
 	private String genre;
@@ -10,6 +26,7 @@ public class Film {
 	private boolean viewed;
 	
 	
+	public Film() {};
 	
 	public Film(String title, String genre, String creator, int duration) {
 		super();
@@ -52,7 +69,7 @@ public class Film {
 	public String isViewed() {
 		String visto = "";
 		if(viewed == true) {
-			visto = "Sí";
+			visto = "Si";
 		}else {
 			visto = "No";
 		}
@@ -66,6 +83,13 @@ public class Film {
 	public void setViewed(boolean viewed) {
 		this.viewed = viewed;
 	}
+	
+	/**
+	 * {@code view()} es un metodo abstracto obligatorio de implementar.
+	 * 
+	 * */
+	
+	public abstract void view();
 	
 	
 	
