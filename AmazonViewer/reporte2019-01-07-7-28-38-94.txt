@@ -1,0 +1,24 @@
+Date: lun., 2 ene. 2019
+
+
+
+ :: MOVIE ::
+ Title: Coco
+ Genero: Animación
+ Year: 2017
+ Creator: Pixart
+ Duration: 120
+
+ :: MOVIE ::
+ Title: Avatar
+ Genero: Ficción
+ Year: 2009
+ Creator: James Cameron
+ Duration: 161
+
+ :: MOVIE ::
+ Title: Sombra del Agua
+ Genero: Drama-Fantasía
+ Year: 2017
+ Creator: Guillermo del Toro
+ Duration: 123
