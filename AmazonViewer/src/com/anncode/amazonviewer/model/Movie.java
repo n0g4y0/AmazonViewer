@@ -122,6 +122,14 @@ public class Movie extends Film implements IVisualizable ,MovieDao{
 		
 	}
 	
+		public static ArrayList<Integer> viewByDate(Date date) {
+		
+			Movie movie = new Movie();
+			
+			return movie.searchByDate(date);
+		
+	}
+	
 }
 
 

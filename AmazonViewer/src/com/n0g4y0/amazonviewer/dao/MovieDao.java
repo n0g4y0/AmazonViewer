@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.anncode.amazonviewer.model.Movie;
 import com.mysql.jdbc.Statement;
@@ -52,6 +53,7 @@ public interface MovieDao extends IDBConnection {
 	
 	
 	default ArrayList<Movie> read(){
+		
 		ArrayList<Movie> movies = new ArrayList<>();
 		
 		try (Connection connection = connectToDB()){
@@ -61,12 +63,16 @@ public interface MovieDao extends IDBConnection {
 			ResultSet rs = preparedStatement.executeQuery();
 			
 			while (rs.next()) {
+				
+				// se van creando objetos de tipo MOVIE, siempre y cuando se hayan encontrado resultados luego de la consulta.
+				
 				Movie movie =  new Movie(
 						rs.getString(TMOVIE_TITLE),
 						rs.getString(TMOVIE_GENRE),
 						rs.getString(TMOVIE_CREATOR),
 						Integer.valueOf(rs.getString(TMOVIE_DURATION)),
 						Short.valueOf(rs.getString(TMOVIE_YEAR)));
+				
 				// se supone que se hace coincidir el ID del registro, con el ID del objeto creado.
 				
 				movie.setId(Integer.valueOf(rs.getString(TMOVIE_ID)));
@@ -127,5 +133,29 @@ public interface MovieDao extends IDBConnection {
 		return viewed;
 	}
 	
+	default ArrayList<Integer> searchByDate(Date date){
+		
+		
+		ArrayList<Integer> buscados = new ArrayList<>();
+		
+		try (Connection connection = connectToDB()){
+			String query = "SELECT * FROM " + TVIEWED+" WHERE fecha < '2019-01-09 00:00:00:' ";
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			while (rs.next()) {
+				
+				
+				buscados.add(Integer.valueOf(rs.getString(TVIEWED_IDELEMENT)));
+				
+			}
+			
+		}catch (SQLException e) {
+			// TODO: handle exception
+		}
+		
+		return buscados;
+	}
 	
 }

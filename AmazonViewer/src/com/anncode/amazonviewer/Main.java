@@ -1,5 +1,7 @@
 package com.anncode.amazonviewer;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,6 +41,22 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		//System.out.println(Day.MONDAY.getSpanish());
+		
+		/**
+		
+		Date fechaPrueba = new Date();
+		SimpleDateFormat SDF = new SimpleDateFormat("yyyy-mm-dd");
+		String stringPrueba = "2019-01-08 00:00:00";
+		try {
+			fechaPrueba = SDF.parse(stringPrueba);
+			System.out.println(fechaPrueba);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		**/
+		
 		showMenu();
 
 	}
@@ -316,7 +334,8 @@ public class Main {
 	}
 	
 	public static void makeReport(Date date) {
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-h-m-s-S");
+		
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
 		String dateString = df.format(date);
 		Report report = new Report();
 		
@@ -329,12 +348,35 @@ public class Main {
 		dateString = dfNameDays.format(date);
 		String contentReport = "Date: " + dateString + "\n\n\n";
 		
-		for (Movie movie : movies) {
+		ArrayList<Integer> encontrados = Movie.viewByDate(date);
+		
+
+		for(Movie movie : movies) {
+		
+			
+			for (Integer hallado : encontrados) {
+				
+				if (hallado == movie.getId()) {
+					
+					contentReport += movie.toString() + "\n";
+					
+				}
+			}
+			
+			
+		}
+
+		
+		/**
+				
 			if (movie.getIsViewed()) {
+				
+				
 				contentReport += movie.toString() + "\n";
 				
 			}
-		}
+		
+		**/
 		
 		for (Serie serie : series) {
 			ArrayList<Chapter> chapters = serie.getChapters();

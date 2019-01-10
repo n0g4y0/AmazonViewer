@@ -30,5 +30,12 @@ public class DataBase {
 	public static final String TVIEWED_IDUSUARIO 		= "id_user";
 	
 	
+	public static final String BUSCAR_FECHA 		= "2019-01-09 00:00:00";
+	
+	
+	
+	
+	
+	
 
 }
