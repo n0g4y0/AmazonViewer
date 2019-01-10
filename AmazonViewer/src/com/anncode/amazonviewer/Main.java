@@ -120,7 +120,21 @@ public class Main {
 					break;
 				case 6:
 					//Date date = new Date();
-					makeReport(new Date());
+					//makeReport(new Date());
+					Scanner sc = new Scanner(System.in);
+					System.out.println("Digite la fecha del reporte a generar, en formato yyyy-MM-DD: ");
+					
+					try {
+							Date dateE = new SimpleDateFormat("yyyy-MM-dd").parse(sc.nextLine());
+							makeReport(dateE);
+							
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					
+					
 					exit = 1;
 					break;
 	

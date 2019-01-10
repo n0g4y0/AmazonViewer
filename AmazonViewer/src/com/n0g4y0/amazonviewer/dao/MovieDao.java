@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -135,11 +136,14 @@ public interface MovieDao extends IDBConnection {
 	
 	default ArrayList<Integer> searchByDate(Date date){
 		
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		String dateString = df.format(date);
+		
 		
 		ArrayList<Integer> buscados = new ArrayList<>();
 		
 		try (Connection connection = connectToDB()){
-			String query = "SELECT * FROM " + TVIEWED+" WHERE fecha < '2019-01-09 00:00:00:' ";
+			String query = "SELECT * FROM " + TVIEWED+" WHERE fecha >= '"+dateString+" 00:00:00:' ";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
 			ResultSet rs = preparedStatement.executeQuery();
