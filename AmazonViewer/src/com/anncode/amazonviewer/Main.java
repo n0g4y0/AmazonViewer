@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 import com.anncode.amazonviewer.model.Book;
 import com.anncode.amazonviewer.model.Chapter;
@@ -360,14 +362,56 @@ public class Main {
 		report.setNameFile("reporte");
 		report.setExtension("txt");
 		report.setTitle(":: VISTOS ::");
-		String contentReport = "";
 		
+		// usado comunmente para la programacion funcional, el tipo STRINGBUILDER
+		StringBuilder contentReport = new StringBuilder();
+		
+		// Se agregan metodos que recibiran funciones de tipo LAMBDA, en las colecciones.
+		
+		// Filter, equivale al IF communmente usado.
+		
+		// El metodo Append es la equivalencia a concatenar: "+="
+		
+		// este metodo siguiente, que esta escrito en PROGRAMACION FUNCIONAL, es equvalente al bloque B
+		movies.stream()
+		.filter(m -> m.getIsViewed())
+		.forEach(m -> contentReport.append(m.toString() + "\n"));
+		
+		// PREDICATE utilizado cuando tenemos CONDICIONES mas COMPLEJAS.
+		
+		//Predicate<Serie> seriesViewed = s -> s.getIsViewed();
+		
+		
+		// CONSUMER es utilizado para agregar acciones en la ITERACION 
+		
+		//Consumer<Serie> seriesEach = s -> contentReport.append(m.toString() + "\n");
+		
+		Consumer<Serie> seriesEach = s -> {
+			
+			ArrayList<Chapter> chapters = s.getChapters();
+			chapters.stream().filter(c -> c.getIsViewed()).forEach(c -> contentReport.append(c.toString() + "\n"));
+			
+		}; 
+		
+		series.stream().forEach(seriesEach);
+		
+		books.stream()
+		.filter(b -> b.getIsReaded())
+		.forEach(b -> contentReport.append(b.toString() + "\n"));
+		
+		
+		
+		// el bloque B.
+		/**
 		for (Movie movie : movies) {
 			if (movie.getIsViewed()) {
 				contentReport += movie.toString() + "\n";
 				
 			}
 		}
+		**/
+		
+		/**
 		
 		for (Serie serie : series) {
 			ArrayList<Chapter> chapters = serie.getChapters();
@@ -386,12 +430,18 @@ public class Main {
 				
 			}
 		}
-
-		report.setContent(contentReport);
+**/
+		
+		// se agregan algunos cambios mas.
+		
+		report.setContent(contentReport.toString());
 		report.makeReport();
 		System.out.println("Reporte Generado");
 		System.out.println();
+	
 	}
+	
+	
 	
 	public static void makeReport(Date date) {
 		
