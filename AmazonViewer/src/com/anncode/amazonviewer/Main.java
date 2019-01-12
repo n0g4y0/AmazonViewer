@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import com.anncode.amazonviewer.model.Book;
 import com.anncode.amazonviewer.model.Chapter;
@@ -162,9 +163,24 @@ public class Main {
 			System.out.println(":: MOVIES ::");
 			System.out.println();
 			
+			//aplicando programacion funcional (LAMBDA)
+			// el siguiente bloque A, es equivalente al bloque B
+			
+			AtomicInteger atomicInteger = new AtomicInteger(1);
+			
+			movies.forEach(m -> System.out.println(atomicInteger.getAndIncrement() + ". " + m.getTitle() + " Visto: " + m.isViewed()));
+			
+			
+			// bloque B, o alternativa B.
+			/**
+			 * 
+			 *
+			
 			for (int i = 0; i < movies.size(); i++) { //1. Movie 1
 				System.out.println(i+1 + ". " + movies.get(i).getTitle() + " Visto: " + movies.get(i).isViewed());
 			}
+			
+			**/
 			
 			System.out.println("0. Regresar al Menu");
 			System.out.println();
@@ -195,9 +211,17 @@ public class Main {
 			System.out.println(":: SERIES ::");
 			System.out.println();
 			
+			
+			AtomicInteger atomicInteger = new AtomicInteger(1);
+			
+			series.forEach(s -> System.out.println(atomicInteger.getAndIncrement() + ". " + s.getTitle() + " Visto: " + s.isViewed()));
+			
+			/**
 			for (int i = 0; i < series.size(); i++) { //1. Serie 1
 				System.out.println(i+1 + ". " + series.get(i).getTitle() + " Visto: " + series.get(i).isViewed());
 			}
+			
+			**/
 			
 			System.out.println("0. Regresar al Menu");
 			System.out.println();
@@ -227,9 +251,17 @@ public class Main {
 			System.out.println();
 			
 			
+			
+			AtomicInteger atomicInteger = new AtomicInteger(1);
+			
+			chaptersOfSerieSelected.forEach(c -> System.out.println(atomicInteger.getAndIncrement() + ". " + c.getTitle() + " Visto: " + c.isViewed()));
+			
+			/**
 			for (int i = 0; i < chaptersOfSerieSelected.size(); i++) { //1. Chapter 1
 				System.out.println(i+1 + ". " + chaptersOfSerieSelected.get(i).getTitle() + " Visto: " + chaptersOfSerieSelected.get(i).isViewed());
 			}
+			
+			**/
 			
 			System.out.println("0. Regresar al Menu");
 			System.out.println();
@@ -258,9 +290,15 @@ public class Main {
 			System.out.println(":: BOOKS ::");
 			System.out.println();
 			
+			AtomicInteger atomicInteger = new AtomicInteger(1);
+			
+			books.forEach(b -> System.out.println(atomicInteger.getAndIncrement() + ". " + b.getTitle() + " Visto: " + b.isReaded()));
+			
+			/**
 			for (int i = 0; i < books.size(); i++) { //1. Book 1
 				System.out.println(i+1 + ". " + books.get(i).getTitle() + " Leido: " + books.get(i).isReaded());
 			}
+			**/
 			
 			System.out.println("0. Regresar al Menu");
 			System.out.println();
@@ -289,9 +327,17 @@ public class Main {
 			System.out.println(":: MAGAZINES ::");
 			System.out.println();
 			
+			AtomicInteger atomicInteger = new AtomicInteger(1);
+			
+			magazines.forEach(m -> System.out.println(atomicInteger.getAndIncrement() + ". " + m.getTitle()));
+			
+			/**
+			
 			for (int i = 0; i < magazines.size(); i++) { //1. Book 1
 				System.out.println(i+1 + ". " + magazines.get(i).getTitle());
 			}
+			
+			**/
 			
 			System.out.println("0. Regresar al Menu");
 			System.out.println();
